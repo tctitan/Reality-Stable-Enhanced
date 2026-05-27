@@ -1,2 +1,2 @@
 # Reality-Stable-Enhanced
-v2
+bash <(curl -fsSL https://raw.githubusercontent.com/tctitan/Reality-Stable-Enhanced/main/sb.sh)
