@@ -7,16 +7,16 @@ echo " DNS SAFE / Production Ready "
 echo "=============================="
 
 PORT=8443
-SNI="www.cloudflare.com"
+SNI="www.microsoft.com"
 
 # =========================
-# 1. åŸºç¡€ä¾èµ–ï¼ˆä¸åŠ¨ç³»ç»Ÿç½‘ç»œï¼‰
+# 1. »ù´¡ÒÀÀµ£¨²»¶¯ÏµÍ³ÍøÂç£©
 # =========================
 apt update -y
 apt install -y curl wget uuid-runtime openssl ufw
 
 # =========================
-# 2. å®‰è£… sing-boxï¼ˆé˜² 404ï¼‰
+# 2. °²×° sing-box£¨·À 404£©
 # =========================
 echo "[INFO] Installing sing-box..."
 
@@ -26,7 +26,7 @@ bash <(curl -fsSL https://sing-box.app/deb-install.sh) || {
 }
 
 # =========================
-# 3. æ£€æŸ¥ binary
+# 3. ¼ì²é binary
 # =========================
 if ! command -v sing-box >/dev/null 2>&1; then
     echo "[ERROR] sing-box not found"
@@ -34,7 +34,7 @@ if ! command -v sing-box >/dev/null 2>&1; then
 fi
 
 # =========================
-# 4. ç”Ÿæˆå‚æ•°
+# 4. Éú³É²ÎÊı
 # =========================
 UUID=$(cat /proc/sys/kernel/random/uuid)
 
@@ -49,7 +49,7 @@ IP=$(curl -4 -s ip.sb)
 echo "[INFO] Server IP: $IP"
 
 # =========================
-# 5. é˜²ç«¯å£å ç”¨æ£€æŸ¥
+# 5. ·À¶Ë¿ÚÕ¼ÓÃ¼ì²é
 # =========================
 if ss -tlnp | grep -q ":$PORT"; then
     echo "[ERROR] Port $PORT already in use"
@@ -57,7 +57,7 @@ if ss -tlnp | grep -q ":$PORT"; then
 fi
 
 # =========================
-# 6. å†™é…ç½®ï¼ˆæœ€å°ç¨³å®šæ ¸å¿ƒï¼‰
+# 6. Ğ´ÅäÖÃ£¨×îĞ¡ÎÈ¶¨ºËĞÄ£©
 # =========================
 mkdir -p /etc/sing-box
 
@@ -106,13 +106,13 @@ cat > /etc/sing-box/config.json <<EOF
 EOF
 
 # =========================
-# 7. é…ç½®æ£€æŸ¥ï¼ˆå…³é”®ï¼‰
+# 7. ÅäÖÃ¼ì²é£¨¹Ø¼ü£©
 # =========================
 echo "[INFO] Checking config..."
 sing-box check -c /etc/sing-box/config.json
 
 # =========================
-# 8. systemdï¼ˆç¨³å®šç‰ˆï¼‰
+# 8. systemd£¨ÎÈ¶¨°æ£©
 # =========================
 cat > /etc/systemd/system/sing-box.service <<EOF
 [Unit]
@@ -136,12 +136,12 @@ systemctl restart sing-box
 sleep 2
 
 # =========================
-# 9. é˜²ç«å¢™ï¼ˆåªå¼€ç«¯å£ï¼‰
+# 9. ·À»ğÇ½£¨Ö»¿ª¶Ë¿Ú£©
 # =========================
 ufw allow $PORT/tcp || true
 
 # =========================
-# 10. çŠ¶æ€æ£€æŸ¥
+# 10. ×´Ì¬¼ì²é
 # =========================
 echo ""
 echo "===== SERVICE STATUS ====="
@@ -152,7 +152,7 @@ echo "===== PORT CHECK ====="
 ss -tlnp | grep $PORT || true
 
 # =========================
-# 11. å®¢æˆ·ç«¯è¾“å‡ºï¼ˆPasswallï¼‰
+# 11. ¿Í»§¶ËÊä³ö£¨Passwall£©
 # =========================
 echo ""
 echo "================ CLIENT ================="
