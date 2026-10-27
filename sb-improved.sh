@@ -6,7 +6,7 @@ IFS=$'\n\t'
 umask 077
 
 PORT=8443
-SNI="www.microsoft.com"
+SNI="www.cloudflare.com"
 CONFIG_PATH="/etc/sing-box/config.json"
 
 die() { printf '[ERROR] %s\n' "$*" >&2; exit 1; }
